@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import sgMail from "@sendgrid/mail";
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgMail.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API_KEY);
 
 export async function POST(req) {
     try {
@@ -10,13 +10,13 @@ export async function POST(req) {
         const { to, full_name } = await req.json();
         console.log("Email Details:", { to, full_name });
 
-        console.log("SENDGRID_API_KEY:", process.env.SENDGRID_API_KEY ? "Exists ✅" : "Missing ❌");
-        console.log("SENDGRID_TEMPLATE_ID:", process.env.SENDGRID_TEMPLATE_ID ? "Exists ✅" : "Missing ❌");
+        console.log("NEXT_PUBLIC_SENDGRID_API_KEY:", process.env.NEXT_PUBLIC_SENDGRID_API_KEY ? "Exists ✅" : "Missing ❌");
+        console.log("NEXT_PUBLIC_SENDGRID_TEMPLATE_ID:", process.env.NEXT_PUBLIC_SENDGRID_TEMPLATE_ID ? "Exists ✅" : "Missing ❌");
 
         const msg = {
             to,
             from: "andres.bonilla@qallta.com",
-            templateId: process.env.SENDGRID_TEMPLATE_ID,
+            templateId: process.env.NEXT_PUBLIC_SENDGRID_TEMPLATE_ID,
             dynamicTemplateData: { full_name },
         };
 
